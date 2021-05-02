@@ -19,6 +19,7 @@ def closeExe():
     os.system("taskkill /F /IM mspaint.exe")
 
 def drawRectangle(position):
+    # 暴力写法。。。。
     pag.mouseDown(x=position['x1'], y=position['y1'])
     pag.mouseUp(x=position['x1'], y=position['y2'], duration=0.5)
     pag.mouseDown(x=position['x1'], y=position['y2'])
@@ -51,7 +52,6 @@ pag.click(x=640, y=155, duration=0.5)
 pag.click(x=680, y=240, duration=0.5)
 # red
 pag.click(x=844, y=110, duration=0.5)
-position1 = {'x1': 500, 'y1': 500, 'x2': 600, 'y2': 600}
 drawRectangle(position1)
 
 
