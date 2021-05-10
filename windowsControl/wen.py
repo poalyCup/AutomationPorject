@@ -32,26 +32,28 @@ def drawRectangle(position):
 
 # 简单粗暴，直接启动应用
 os.startfile(r'C:\WINDOWS\system32\mspaint.exe')
-time.sleep(1)
+time.sleep(3)
 setWindowToTop()  ##不知道为什么打开之后会缩小
 time.sleep(1)
 # 双击标题栏，全屏
-pag.doubleClick(x=1650, y=115, duration=0.5)
+# pag.doubleClick(x=1650, y=115, duration=0.5)
+pag.hotkey('altleft', 'space', 'x')
 # 选中直线
 # pag.click(x=404, y=115, duration=0.5) 不好用
 # 选择size 8xp
-pag.click(x=640, y=155, duration=0.5)
-pag.click(x=657, y=322, duration=0.5)
+# 公司的电脑y坐标全减40.....
+pag.click(x=640, y=115, duration=0.5)
+pag.click(x=657, y=282, duration=0.5)
 # yellow
-pag.click(x=888, y=110, duration=0.5)
+pag.click(x=888, y=70, duration=0.5)
 position1 = {'x1': 500, 'y1': 500, 'x2': 600, 'y2': 600}
 drawRectangle(position1)
 
 # 选择size 3xp
-pag.click(x=640, y=155, duration=0.5)
-pag.click(x=680, y=240, duration=0.5)
+pag.click(x=640, y=115, duration=0.5)
+pag.click(x=680, y=200, duration=0.5)
 # red
-pag.click(x=844, y=110, duration=0.5)
+pag.click(x=844, y=70, duration=0.5)
 drawRectangle(position1)
 
 
