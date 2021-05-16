@@ -35,6 +35,25 @@ def selectSubject(data):
         driver.find_element_by_id('subjectsInput').send_keys(item)
         driver.find_element_by_id('subjectsInput').send_keys(Keys.ENTER)
 
+def selectWebBrowser():
+    print("请选择想要调用并执行脚本的浏览器：")
+    print("1. Chrome")
+    print("2. Firefox")
+    print("3. Edge")
+    seleter = input()
+    if seleter == '1':
+        print("chrome")
+        return webdriver.Chrome(executable_path=r'D:\Program Files (x86)\Python39\chromedriver.exe')
+    elif seleter == '2':
+        return webdriver.Firefox(executable_path=r'D:\Program Files (x86)\Python39\geckodriver.exe')
+        print("firefox")
+    elif seleter == '3':
+        return webdriver.Edge(executable_path=r'D:\Program Files (x86)\Python39\msedgedriver.exe')
+        print("edge")
+    else:
+        print("错误输入.....")
+        return selectWebBrowser()
+
 # 随便写点
 conf = {'firstName': 'Aa123',
         'lastName': '123!@#$',
@@ -42,7 +61,9 @@ conf = {'firstName': 'Aa123',
         'userNumber': '1234567890',
         'date': '1994-3-25'}
 
-driver = webdriver.Chrome()
+
+driver = selectWebBrowser()
+
 driver.maximize_window()
 driver.get("http://toolsqa.com/automation-practice-form/")
 time.sleep(1)  # sleep一下好想不那么容易报错？
@@ -52,23 +73,25 @@ driver.find_element_by_id('lastName').send_keys(conf['lastName'])
 # 害~ 单项选择框,用不了Select()
 driver.find_elements_by_class_name('custom-control-label')[0].click()
 driver.find_element_by_id('userNumber').send_keys(conf['userNumber'])
+driver.find_element_by_id('userEmail').send_keys(conf['userEmail'])
 # 日期的格式必须是 ’yyyy-MM-DD‘ ，问就是懒
 selectDate(conf['date'])
 # 输那些有的，别整那些花里胡哨的
 selectSubject(['English', 'o'])
 
-driver.find_element_by_id('userEmail').send_keys(conf['userEmail'])
 # # 不搞了，就这样吧  选择爱好
-driver.find_element_by_xpath("//*[@id='hobbies-checkbox-1']/../label").click()
-driver.find_element_by_xpath("//*[@id='hobbies-checkbox-2']/../label").click()
-driver.find_element_by_xpath("//*[@id='hobbies-checkbox-3']/../label").click()
+driver.find_element_by_xpath("//*[@id='hobbies-checkbox-1']").send_keys(Keys.SPACE)
+driver.find_element_by_xpath("//*[@id='hobbies-checkbox-2']").send_keys(Keys.SPACE)
+driver.find_element_by_xpath("//*[@id='hobbies-checkbox-3']").send_keys(Keys.SPACE)
 
 # 得，简单粗暴   上传图片
-driver.find_element_by_class_name('form-control-file').send_keys('C:/Users/whale/Desktop/头图/风铃.jpg')
+driver.find_element_by_class_name('form-control-file').send_keys(r'C:\\Users\whale\Desktop\头图\风铃.jpg')
 
 # 选择城市
 driver.find_element_by_id('react-select-3-input').send_keys('NCR')
-driver.find_element_by_id('react-select-3-input').send_keys(Keys.ENTER)
+driver.find_element_by_id('react-select-3-input').send_keys(Keys.TAB)
+driver.find_element_by_id('react-select-3-input').send_keys(Keys.TAB)
+time.sleep(1)
 driver.find_element_by_id('react-select-4-input').send_keys('De')
 driver.find_element_by_id('react-select-4-input').send_keys(Keys.TAB)
 
